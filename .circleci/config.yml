@@ -7,7 +7,6 @@ jobs:
     steps:
       - checkout
       - run: npm i
-      - run: npx percy snapshot ./snapshots.json
 
 
 workflows:
