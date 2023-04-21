@@ -1,0 +1,9 @@
+[{
+  "name": "Snapshot one",
+  "url": "https://www.google.com/search?q=1",
+  "waitForTimeout": 3000
+}, {
+  "name": "Snapshot two",
+  "url": "https://www.google.com/search?q=2",
+  "waitForTimeout": 3000
+}]

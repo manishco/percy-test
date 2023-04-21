@@ -1,0 +1,21 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:20.0.0
+    steps:
+      - checkout
+      - run: npm i
+      - run: npx percy snapshot https://percy.io/sitemap.xml
+      - run: npx percy snapshot https://percy.io/sitemap.xml
+
+
+workflows:
+  # Name of workflow
+  hello_and_goodbye:
+    # List of jobs that will run
+    jobs:
+      - build:
+          context:
+            - test
