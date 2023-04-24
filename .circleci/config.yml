@@ -1,0 +1,23 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:20.0.0-browsers
+    steps:
+      - checkout
+      - run: npm i
+      - run: npx percy snapshot ./snapshots.json
+      - run: echo $CIRCLE_SHA1
+      - run: node poll.js
+
+
+
+workflows:
+  # Name of workflow
+  hello_and_goodbye:
+    # List of jobs that will run
+    jobs:
+      - build:
+          context:
+            - test
