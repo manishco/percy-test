@@ -8,6 +8,7 @@ jobs:
       - checkout
       - run: npm i
       - run: npx percy snapshot ./snapshots.json
+      - run: echo $CIRCLE_SHA1
       - run: node poll.js
 
 

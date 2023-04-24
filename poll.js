@@ -1,6 +1,8 @@
 const request = require('request');
 const  { PERCY_TOKEN, CIRCLE_SHA1 } = process.env;
 
+console.log(`DEBUG: ${CIRCLE_SHA1}`)
+
 const getBuilds = ({token, projectId, filterSha}) => new Promise((resolve, reject) => {
     request({
         'method': 'GET',
