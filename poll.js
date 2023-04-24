@@ -31,12 +31,12 @@ const getBuilds = ({token, projectId, filterSha}) => new Promise((resolve, rejec
         async ()=> {
             const { data } = await getBuilds({ token: PERCY_TOKEN, projectId: '435051', filterSha: CIRCLE_SHA1 || '1' })
 
-            if(data[0]) {
+            if(data[0] && data[0].attributes.state === 'finished') {
                 completed = true
                 percyBuild = data[0]
             }
 
-            console.log(`Poll ${++pollCount}: ${data[0] ?  'Build found' : 'Build not found'}`)
+            console.log(`Poll ${++pollCount}: ${data[0] ?  `Build found with status ${data[0].attributes.state}` : 'Build not found'}`)
         },
         5000,
         () => completed
