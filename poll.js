@@ -14,6 +14,9 @@ const getBuilds = ({token, projectId, filterSha}) => new Promise((resolve, rejec
             'filter[sha]': filterSha
         }
     }, function (error, response) {
+        console.log(error)
+
+        console.log(JSON.parse(response.body, null, 2))
         if (error) reject(error);
         resolve(JSON.parse(response.body))
     })
