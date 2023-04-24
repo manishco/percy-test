@@ -1,0 +1,33 @@
+version: 2.1
+
+orbs:
+  github-cli: circleci/github-cli@2.2.0
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:20.0.0-browsers
+    steps:
+      - checkout
+      - run: npm i
+      - github-cli/setup
+      - run: |
+          gh api \
+          --method POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /repos/manishco/percy-test/statuses/$CIRCLE_SHA1 \
+          -f state='success' \
+          -f description='No visual tests required' \
+          -f context='percy/percy-test'
+
+
+workflows:
+  # Name of workflow
+  hello_and_goodbye:
+    # List of jobs that will run
+    jobs:
+      - build:
+          context:
+            - test
+            - ghContext
