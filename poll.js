@@ -29,7 +29,6 @@ const getBuilds = ({token, projectId, filterSha}) => new Promise((resolve, rejec
 
     await poll(
         async ()=> {
-            completed = true
             const { data } = await getBuilds({ token: PERCY_TOKEN, projectId: '435051', filterSha: CIRCLE_SHA1 || '1' })
 
             if(data[0]) {
