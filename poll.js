@@ -39,7 +39,7 @@ const getBuilds = ({token, projectId, filterSha}) => new Promise((resolve, rejec
             console.log(`Poll ${++pollCount}: ${data[0] ?  'Build found' : 'Build not found'}`)
         },
         5000,
-        () => !completed
+        () => completed
     )
 
     console.log(JSON.stringify(percyBuild, null, 2))
